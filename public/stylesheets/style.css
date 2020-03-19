@@ -46,18 +46,13 @@ form.login {
   margin: 0 auto;
 }
 
-.login-heading,
-.email-label,
-.password-label {
+.label,
+.form-label {
   /* color: rgb(63, 63, 63); */
   color: lightsalmon;
 }
 
-.signup-label {
+.signup-label,
+.login-label {
   color: white;
 }
-
-/* body {
-  
-  
-} */
