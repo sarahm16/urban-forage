@@ -1,6 +1,6 @@
-const mapKey = 'JprhJCXYJMxRCpTODmFal0wPQh9T04hp'; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
-const express = require('express');
-const https = require('https');
+const mapKey = "JprhJCXYJMxRCpTODmFal0wPQh9T04hp"; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
+const express = require("express");
+const https = require("https");
 var searchQuery = "https://api.yelp.com/v3/businesses/search?";
 var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
 
@@ -16,34 +16,60 @@ searchQuery += "/term=restaurant";
 //      Need id or class of field that this will come from (input field probably?)
 // mapQuery += $(#someField).val();
 
-// 2. Find long/lat based on city name
+// 2a. get lat/long based on user location
+function getCurrentLatLong(cb) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(cb, showError);
+  } else {
+    console.error("Geolocation is not supported by this browser");
+  }
+}
+function showError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "User denied the request for Geolocation.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "Location information is unavailable.";
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "The request to get user location timed out.";
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "An unknown error occurred.";
+      break;
+  }
+}
+
+// 2b. Find long/lat based on city name
 //      Use mapquest dev api for retrieving the coordinates
 //      Make the AJAX call to retrieve the coordinates
-https.get(mapQuery), (res) => {
-    let data = '';
-    let lat;
-    let long;
+function getCityLatLong(mapQuery) {
+  https.get(mapQuery),
+    res => {
+      let data = "";
+      let lat;
+      let long;
 
-    res.on('data', (chunk) => {
+      res.on("data", chunk => {
         data += chunk;
-    });
+      });
 
-    // At this point, turn into JSON and retrieve results.displayLatLng.lat and results.displayLatLng.lng
-    res.on('end', () => {
+      // At this point, turn into JSON and retrieve results.displayLatLng.lat and results.displayLatLng.lng
+      res.on("end", () => {
         let obj;
         console.log(data);
         obj = JSON.parse(data);
         //lat = obj.results.displayLatLng.lat;
         //long = obj.results.displayLatLng.lng;
         //return [lat, long];
-    });
+      });
 
-    res.on('error', (err) => {
+      res.on("error", err => {
         if (err) throw err;
-    });
-};
-
-
+      });
+    };
+}
 // TODO Radius (int) -- Optional
 // Suggested search radius in meters, probably convert kms to freedom units, default radius of 10 miles maybe?
 
@@ -74,20 +100,34 @@ https.get(mapQuery), (res) => {
 
 // Make the AJAX call
 
-https.get(searchQuery), (res) => {
-    let data = '';
+function getRestaurantData(searchQuery) {
+  https.get(searchQuery),
+    res => {
+      let data = "";
 
-    res.on ('data', (chunk) => {
+      res.on("data", chunk => {
         data += chunk;
-    });
+      });
 
-    res.on('end', () => {
+      res.on("end", () => {
         console.log(JSON.parse(data).explanation);
-    });
 
-    res.on('error', (err) => {
+        // create a data object of the restaurant info
+        let completeData = JSON.parse(data);
+
+        // build array of restaurant data and return it
+        let restaurants = [];
+        for (let i = 0; i < 10; i++) {
+          let restaurant = {
+            name: completeData[index].name,
+            imgUrl: completeData[index].image_url
+          };
+          restaurants.push(restaurant);
+        }
+      });
+
+      res.on("error", err => {
         if (err) throw err;
-    });
-};
-
-
+      });
+    };
+}
