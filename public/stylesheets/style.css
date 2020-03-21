@@ -56,3 +56,12 @@ form.login {
 .login-label {
   color: white;
 }
+
+button{
+  opacity: 75%;
+}
+
+h2{
+  color: white;
+  opacity: 75%;
+}
