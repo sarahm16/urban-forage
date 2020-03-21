@@ -4,4 +4,10 @@ $(document).ready(function() {
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
   });
+
+  $("#users").click(function() {
+    $(".options").hide();
+    $(".welcome").hide();
+    console.log("hello");
+  });
 });

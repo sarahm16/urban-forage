@@ -1,4 +1,4 @@
-// Creating our Likes model
+//Creating our Likes model
 module.exports = function(sequelize, DataTypes) {
   var Like = sequelize.define(
     "Like",
