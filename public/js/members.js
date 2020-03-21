@@ -10,4 +10,12 @@ $(document).ready(function() {
     $(".welcome").hide();
     console.log("hello");
   });
+
+  $(".city").hide();
+
+  $("#restaurants").click(function() {
+    $(".options").hide();
+    $(".welcome").hide();
+    $(".city").show();
+  });
 });
