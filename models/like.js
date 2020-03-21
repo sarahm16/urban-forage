@@ -1,7 +1,7 @@
 // Creating our Likes model
 module.exports = function(sequelize, DataTypes) {
-  var Likes = sequelize.define(
-    "Likes",
+  var Like = sequelize.define(
+    "Like",
     {
       // The user cannot be null
       user: {
@@ -18,10 +18,10 @@ module.exports = function(sequelize, DataTypes) {
     {
       classMethods: {
         associate: function(models) {
-          Likes.belongsTo(models.Restaurant, { foreignKey: restaurantId });
+          Like.belongsTo(models.Restaurant, { foreignKey: restaurantId });
         }
       }
     }
   );
-  return Likes;
+  return Like;
 };
