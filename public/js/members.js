@@ -9,6 +9,9 @@ $(document).ready(function() {
     $(".options").hide();
     $(".welcome").hide();
     console.log("hello");
+    $.get("/api/users", function(data) {
+      console.log(data);
+    });
   });
 
   $(".city").hide();
