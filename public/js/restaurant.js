@@ -43,7 +43,6 @@ https.get(mapQuery), (res) => {
     });
 };
 
-
 // TODO Radius (int) -- Optional
 // Suggested search radius in meters, probably convert kms to freedom units, default radius of 10 miles maybe?
 
