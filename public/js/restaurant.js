@@ -1,15 +1,13 @@
 const mapKey = 'JprhJCXYJMxRCpTODmFal0wPQh9T04hp'; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
 const express = require('express');
 const https = require('https');
-var searchQuery = "https://api.yelp.com/v3/businesses/search";
+var searchQuery = "https://api.yelp.com/v3/businesses/search?";
 var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
-
-let searchLocation;
 
 // Parameters
 // TODO Term (string) (search term) -- Required
 // Just search "restaurant"
-searchQuery += "/term/restaurant";
+searchQuery += "/term=restaurant";
 
 // TODO Location (string) -- REQUIRED
 // Need to provide as lat/long (decimal), so give user option to search for restaurants within a certain city?
@@ -50,7 +48,8 @@ https.get(mapQuery), (res) => {
 // Suggested search radius in meters, probably convert kms to freedom units, default radius of 10 miles maybe?
 
 // if radius exists, return radius
-// else return 10 miles
+// else return 10 miles - DEFAULT
+// if (radius) { searchQuery += '&radius=16094' };
 
 // TODO Categories -- Optional
 // Do we want users to be able to narrow it down to a type of food then search restaurants within that category
