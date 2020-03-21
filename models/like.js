@@ -14,6 +14,18 @@ module.exports = function(sequelize, DataTypes) {
       restaurantId: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      url: {
+        type: DataTypes.STRING
+      },
+      imageURL: {
+        type: DataTypes.STRING
+      },
+      latitude: {
+        type: DataTypes.FLOAT
+      },
+      longitude: {
+        type: DataTypes.FLOAT
       }
 
       // restaurantId: {
