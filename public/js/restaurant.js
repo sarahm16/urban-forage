@@ -9,9 +9,6 @@ var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&lo
 // Just search "restaurant"
 searchQuery += "/term=restaurant";
 
-// TODO Location (string) -- REQUIRED
-// Need to provide as lat/long (decimal), so give user option to search for restaurants within a certain city?
-
 // 1. Get desired restaurant location by name
 //      Need id or class of field that this will come from (input field probably?)
 // mapQuery += $(#someField).val();
@@ -35,7 +32,9 @@ https.get(mapQuery), (res) => {
         obj = JSON.parse(data);
         //lat = obj.results.displayLatLng.lat;
         //long = obj.results.displayLatLng.lng;
-        //return [lat, long];
+        // TODO Location (string) -- REQUIRED
+            // Need to provide as lat/long (decimal)
+        searchQuery += ""
     });
 
     res.on('error', (err) => {
