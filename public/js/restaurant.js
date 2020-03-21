@@ -1,10 +1,10 @@
+const mapKey = 'JprhJCXYJMxRCpTODmFal0wPQh9T04hp'; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
 const express = require('express');
 const https = require('https');
 var searchQuery = "https://api.yelp.com/v3/businesses/search";
+var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
 
 let searchLocation;
-
-// MAIN-TODO Need to complete string assembly for ajax request
 
 // Parameters
 // TODO Term (string) (search term) -- Required
@@ -15,7 +15,36 @@ searchQuery += "/term/restaurant";
 // Need to provide as lat/long (decimal), so give user option to search for restaurants within a certain city?
 
 // 1. Get desired restaurant location by name
+//      Need id or class of field that this will come from (input field probably?)
+// mapQuery += $(#someField).val();
+
 // 2. Find long/lat based on city name
+//      Use mapquest dev api for retrieving the coordinates
+//      Make the AJAX call to retrieve the coordinates
+https.get(mapQuery), (res) => {
+    let data = '';
+    let lat;
+    let long;
+
+    res.on('data', (chunk) => {
+        data += chunk;
+    });
+
+    // At this point, turn into JSON and retrieve results.displayLatLng.lat and results.displayLatLng.lng
+    res.on('end', () => {
+        let obj;
+        console.log(data);
+        obj = JSON.parse(data);
+        //lat = obj.results.displayLatLng.lat;
+        //long = obj.results.displayLatLng.lng;
+        //return [lat, long];
+    });
+
+    res.on('error', (err) => {
+        if (err) throw err;
+    });
+};
+
 
 // TODO Radius (int) -- Optional
 // Suggested search radius in meters, probably convert kms to freedom units, default radius of 10 miles maybe?
