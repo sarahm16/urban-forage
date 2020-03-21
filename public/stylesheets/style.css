@@ -56,3 +56,11 @@ form.login {
 .login-label {
   color: white;
 }
+
+.welcome{
+  color: lightsalmon;
+}
+
+.btn{
+  color: rgb(179, 98, 0);;
+}
