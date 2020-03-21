@@ -57,11 +57,10 @@ form.login {
   color: white;
 }
 
-button{
-  opacity: 75%;
+.welcome{
+  color: lightsalmon;
 }
 
-h2{
-  color: white;
-  opacity: 75%;
+.btn{
+  color: rgb(179, 98, 0);;
 }
