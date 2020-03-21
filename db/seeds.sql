@@ -20,7 +20,7 @@ CREATE TABLE restaurants
     AUTO_INCREMENT NOT NULL,
   user varchar
     (30) NOT NULL,
-  restaurant_id int NOT NULL,
+  restaurantId int NOT NULL,
   date DATETIME NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY
     (id)

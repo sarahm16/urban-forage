@@ -9,8 +9,8 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         validate: {}
       },
-      // The restauran_id imust be pulled from the restaurant table so must be associated
-      restaurant_id: {
+      // The restaurantId imust be pulled from the restaurant table so must be associated
+      restaurantId: {
         type: DataTypes.INTEGER,
         allowNull: false
       }
@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       classMethods: {
         associate: function(models) {
-          Likes.belongsTo(models.Restaurant, { foreignKey: restaurant_id });
+          Likes.belongsTo(models.Restaurant, { foreignKey: restaurantId });
         }
       }
     }
