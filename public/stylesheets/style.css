@@ -3,23 +3,56 @@ form.login {
   margin-top: 50px;
 }
 
+.bg-image {
+  background-image: url('../images/img3.jpg');
+  height: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  filter: blur(4px);
+  position: relative;
+  z-index: -1;
+  opacity: 90%;
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
 .title {
   color: rgb(179, 98, 0);
   font-weight: 800;
 }
 
-.login-heading,
-.email-label,
-.password-label {
+.restaurants {
+  background-color: gray;
+  border-radius: 10px;
+  width: 30%;
+  padding: 20px;
+}
+
+#restaurant-name {
+  background-color: white;
+  margin: 0px;
+  width: 100%;
+  padding: 50px;
+}
+
+#restaurant-image {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.label,
+.form-label {
   /* color: rgb(63, 63, 63); */
   color: lightsalmon;
 }
 
-.signup-label {
+.signup-label,
+.login-label {
   color: white;
-}
-
-body {
-  background-image: url('../images/img3.jpg');
-  background-size: cover;
 }
