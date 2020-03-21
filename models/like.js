@@ -9,19 +9,26 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         validate: {}
       },
+      // temporarily changing restaurantId to be the restaurant name
       // The restaurantId imust be pulled from the restaurant table so must be associated
       restaurantId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       }
-    },
-    {
-      classMethods: {
-        associate: function(models) {
-          Like.belongsTo(models.Restaurant, { foreignKey: restaurantId });
-        }
-      }
+
+      // restaurantId: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false
+      // }
     }
+    //,
+    //   {
+    //     classMethods: {
+    //       associate: function(models) {
+    //         Like.belongsTo(models.Restaurant, { foreignKey: restaurantId });
+    //       }
+    //     }
+    //   }
   );
   return Like;
 };

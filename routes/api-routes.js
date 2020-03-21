@@ -61,6 +61,7 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
+
   // route for adding restaurant to database
   app.post("/api/restaurants", function(req, res) {
     db.Restaurant.create({
@@ -75,13 +76,27 @@ module.exports = function(app) {
   });
 
   // route for adding like to database
-  app.post("/api/likes", function(req, res) {
+  app.post("/api/likes/add", function(req, res) {
     db.Like.create({
       user: req.body.username,
       restaurantId: req.body.restaurant
     })
       .then(function() {
         res.send(`Added like for ${req.body.restaurant}!`);
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+
+  // route for getting user likes
+  app.get("api/showLikes/:user", function(req, res) {
+    db.Like.findAll({
+      attributes: "restaurantId",
+      where: { user: req.params.user }
+    })
+      .then(function(data) {
+        res.json(data);
       })
       .catch(function(err) {
         res.status(401).json(err);
