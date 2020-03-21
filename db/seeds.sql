@@ -1,10 +1,3 @@
--- Drops the urban_forage if it exists currently --
-DROP DATABASE IF EXISTS urban_forage;
--- Creates the "urban_forage" database --
-CREATE DATABASE urban_forage;
-
-USE urban_forage;
-
 -- Drops the restaurants if it exists currently --
 DROP TABLE IF EXISTS restaurants;
 -- Creates the "restaurants" database --
@@ -12,7 +5,7 @@ CREATE TABLE restaurants
 (
   id int
   AUTO_INCREMENT NOT NULL,
-  user varchar
+  name varchar
   (30) NOT NULL,
   PRIMARY KEY
   (id)
