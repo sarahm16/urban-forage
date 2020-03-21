@@ -28,22 +28,51 @@ form.login {
 }
 
 .restaurants {
-  background-color: gray;
+  background-color: rgb(211, 211, 211);
   border-radius: 10px;
   width: 30%;
-  padding: 20px;
+  padding-top: 0px;
+  text-align: center;
+  position: fixed;
+  margin: 0 auto;
+  left: 35%;
+  top: 25%;
 }
 
 #restaurant-name {
   background-color: white;
+  color: rgb(179, 98, 0);
+  font-weight: bold;
+  padding: 10px 0px 10px 0px;
   margin: 0px;
   width: 100%;
-  padding: 50px;
+  text-align: center;
 }
 
 #restaurant-image {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.buttons {
+  padding-bottom: 10px;
+}
+
+#thumbs-up {
+  color: green;
+  padding: 5px;
+  border-style: none;
+  border-radius: 2px;
+}
+
+#thumbs-down {
+  margin-left: 5px;
+  color: red;
+  padding: 5px;
+  border-style: none;
+  border-radius: 2px;
 }
 
 .label,
