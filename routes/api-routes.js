@@ -50,4 +50,41 @@ module.exports = function(app) {
       });
     }
   });
+
+  // route for getting users
+  app.get("/api/users", function(_req, res) {
+    db.User.findAll({ attributes: "name" })
+      .then(function(usersData) {
+        res.json(usersData);
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+  // route for adding restaurant to database
+  app.post("/api/restaurants", function(req, res) {
+    db.Restaurant.create({
+      name: req.body.restaurant
+    })
+      .then(function() {
+        res.send(`Added restaurant ${req.body.restaurant}!`);
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+
+  // route for adding like to database
+  app.post("/api/likes", function(req, res) {
+    db.Like.create({
+      user: req.body.username,
+      restaurantId: req.body.restaurant
+    })
+      .then(function() {
+        res.send(`Added like for ${req.body.restaurant}!`);
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
 };
