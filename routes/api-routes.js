@@ -55,8 +55,12 @@ module.exports = function(app) {
   app.get("/api/users", function(_req, res) {
     db.User.findAll({ attributes: ["id", "email"] })
       .then(function(usersData) {
-        res.json(usersData);
-        //res.render("users", usersData);
+        var user = {
+          id: usersData[0].id,
+          email: usersData[0].email
+        }
+        res.render("users", user);
+        //res.render("users", user);
       })
       .catch(function(err) {
         res.status(401).json(err);
