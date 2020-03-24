@@ -4,21 +4,4 @@ $(document).ready(function() {
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
   });
-
-  // $("#users").click(function() {
-  //   $(".options").hide();
-  //   $(".welcome").hide();
-  //   console.log("hello");
-  //   // $.get("/api/users", function(data) {
-  //   //   //console.log(data);
-  //   // });
-  // });
-
-  // $(".city").hide();
-
-  // $("#find-restaurant").click(function() {
-  //   $(".options").hide();
-  //   $(".welcome").hide();
-  //   $(".city").show();
-  // });
 });
