@@ -1,8 +1,24 @@
-    <h2>Hello</h2>
-    <div class="container users">
-        <div class="buttons"></div>
-            {{!-- {{#each usersData}} --}}
-                <button id="{{id}}">{{email}}</button>
-            {{!-- {{/each}} --}}
+<div class="bg-image"></div>
+<div class="main">
+  <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/logout">
+            Logout
+          </a>
         </div>
-    </div>
+      </div>
+  </nav>
+
+  <h2>Pick a friend</h2>
+
+  <div class="container users">
+      <div class="buttons"></div>
+          {{!-- {{#each usersData}} --}}
+              <button id="{{id}}">{{email}}</button>
+          {{!-- {{/each}} --}}
+      </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

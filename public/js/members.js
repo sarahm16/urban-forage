@@ -5,20 +5,20 @@ $(document).ready(function() {
     $(".member-name").text(data.email);
   });
 
-  $("#users").click(function() {
-    $(".options").hide();
-    $(".welcome").hide();
-    console.log("hello");
-    // $.get("/api/users", function(data) {
-    //   //console.log(data);
-    // });
-  });
+  // $("#users").click(function() {
+  //   $(".options").hide();
+  //   $(".welcome").hide();
+  //   console.log("hello");
+  //   // $.get("/api/users", function(data) {
+  //   //   //console.log(data);
+  //   // });
+  // });
 
-  $(".city").hide();
+  // $(".city").hide();
 
-  $("#restaurants").click(function() {
-    $(".options").hide();
-    $(".welcome").hide();
-    $(".city").show();
-  });
+  // $("#find-restaurant").click(function() {
+  //   $(".options").hide();
+  //   $(".welcome").hide();
+  //   $(".city").show();
+  // });
 });
