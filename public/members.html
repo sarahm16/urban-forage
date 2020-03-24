@@ -30,13 +30,16 @@
         </div>
       </div>
       <div class = "row">
-        <div class="col-md-6 col-md-offset-3">
-          <button id = "users" class="btn btn-outline-primary btn-lg search">
+        <div class = "col-md-6 col-md-offset-3 options">
+          <a href="/api/users"><button id = "users" class="btn btn-outline-primary btn-lg search">
             <i class="fas fa-utensils"></i>  Find a Friend  
-          </button>
+          </button></a>
           <button id = "restaurants" class="btn btn-outline-primary btn-lg search">
             <i class="fas fa-user-friends"></i>  Find a Restaurant
           </button>
+        </div>
+        <div class="city">
+          <input type="text"><button id="submit-city">Search</button>
         </div>
     </div>
     </div>
@@ -44,7 +47,7 @@
 </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/members.js"></script>
+  <script type="text/javascript" src="./js/members.js"></script>
 
 </body>
 

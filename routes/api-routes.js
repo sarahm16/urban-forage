@@ -33,7 +33,7 @@ module.exports = function(app) {
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
   });
 
   // Route for getting some data about our user to be used client side
@@ -53,9 +53,14 @@ module.exports = function(app) {
 
   // route for getting users
   app.get("/api/users", function(_req, res) {
-    db.User.findAll({ attributes: "name" })
+    db.User.findAll({ attributes: ["id", "email"] })
       .then(function(usersData) {
-        res.json(usersData);
+        var user = {
+          id: usersData[0].id,
+          email: usersData[0].email
+        }
+        res.render("users", user);
+        //res.render("users", user);
       })
       .catch(function(err) {
         res.status(401).json(err);
