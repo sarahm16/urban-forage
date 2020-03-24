@@ -3,6 +3,11 @@ module.exports = function(sequelize, DataTypes) {
   var Like = sequelize.define(
     "Like",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
       // The user cannot be null
       user: {
         type: DataTypes.STRING,
@@ -26,12 +31,19 @@ module.exports = function(sequelize, DataTypes) {
       },
       longitude: {
         type: DataTypes.FLOAT
+      },
+      date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
       }
 
       // restaurantId: {
       //   type: DataTypes.INTEGER,
       //   allowNull: false
       // }
+    },
+    {
+      timestamps: false
     }
     //,
     //   {
