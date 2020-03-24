@@ -38,6 +38,7 @@ module.exports = function(app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
+    console.log(req)
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -75,30 +76,36 @@ module.exports = function(app) {
   });
 
   app.get("/api/restaurants", function(req, res) {
+    console.log("accessing restaurants")
     res.render("restaurants");
   });
 
-  // route for adding restaurant to database
-  app.post("/api/restaurants", function(req, res) {
-    db.Restaurant.create({
-      name: req.body.restaurant
-    })
-      .then(function() {
-        res.send(`Added restaurant ${req.body.restaurant}!`);
-      })
-      .catch(function(err) {
-        res.status(401).json(err);
-      });
-  });
+  // // route for adding restaurant to database
+  // app.post("/api/restaurants", function(req, res) {
+  //   db.Restaurant.create({
+  //     name: req.body.restaurant
+  //   })
+  //     .then(function() {
+  //       res.send(`Added restaurant ${req.body.restaurant}!`);
+  //     })
+  //     .catch(function(err) {
+  //       res.status(401).json(err);
+  //     });
+  // });
 
   // route for adding like to database
   app.post("/api/likes/add", function(req, res) {
+    console.log(`Attempting to add ${JSON.stringify(req.body)}`)
     db.Like.create({
-      user: req.body.username,
-      restaurantId: req.body.restaurant
+      user: req.body.user,
+      restaurantId: req.body.restaurantId,
+      imageURL: req.body.imageURL,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
     })
-      .then(function() {
-        res.send(`Added like for ${req.body.restaurant}!`);
+      .then(function(data) {
+        console.log(data)
+        res.send(`Added like for ${req.body.restaurantId}!`);
       })
       .catch(function(err) {
         res.status(401).json(err);
@@ -106,12 +113,14 @@ module.exports = function(app) {
   });
 
   // route for getting user likes
-  app.get("api/showLikes/:user", function(req, res) {
+  app.get("/api/showLikes/:user", function(req, res) {
+    console.log(req.params)
     db.Like.findAll({
-      attributes: "restaurantId",
+      //attributes: ["restaurantId"],
       where: { user: req.params.user }
     })
       .then(function(data) {
+        console.log(data)
         res.json(data);
       })
       .catch(function(err) {
