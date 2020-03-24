@@ -19,8 +19,17 @@ CREATE TABLE restaurants
     id int
     AUTO_INCREMENT NOT NULL,
   user varchar
-    (30) NOT NULL,
-  restaurantId int NOT NULL,
+    (40) NOT NULL,
+--  restaurantId int NOT NULL,       -- temporarily changing restaurantId to be the restaurant name
+  restaurantId VARCHAR
+    (50) NOT NULL,
+  url VARCHAR
+    (MAX),
+  imageURL VARCHAR
+    (MAX),
+  latitude FLOAT,
+  longitude FLOAT,
+
   date DATETIME NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY
     (id)
