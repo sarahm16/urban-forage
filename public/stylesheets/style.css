@@ -94,9 +94,14 @@ form.login {
   color: rgb(179, 98, 0);;
 }
 
+
 #city-search{
   display: inline-block;
 }
 .city{
   display: inline;
+}
+.user-email {
+  margin: 5px;
+
 }
