@@ -53,14 +53,21 @@ module.exports = function(app) {
 
   // route for getting users
   app.get("/api/users", function(_req, res) {
-    db.User.findAll({ attributes: ["id", "email"] })
+    db.User.findAll({  })
       .then(function(usersData) {
-        var user = {
-          id: usersData[0].id,
-          email: usersData[0].email
-        }
-        res.render("users", user);
-        //res.render("users", user);
+        //console.log(usersData);
+        var usersArray = [];
+        for(var i=0; i<usersData.length; i++) {
+          var user = {
+            id: usersData[i].id,
+            email: usersData[i].email
+          }
+          usersArray.push(user);
+        };
+        var hbsObj = {
+          users: usersArray
+        };
+        res.render("users", hbsObj);
       })
       .catch(function(err) {
         res.status(401).json(err);
