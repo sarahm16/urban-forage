@@ -33,10 +33,7 @@ form.login {
   width: 30%;
   padding-top: 0px;
   text-align: center;
-  position: fixed;
   margin: 0 auto;
-  left: 35%;
-  top: 25%;
 }
 
 #restaurant-name {
@@ -104,4 +101,18 @@ form.login {
 .user-email {
   margin: 5px;
 
+}
+
+.restaurant-list{
+  margin-top: 50px;
+}
+
+#matches-div{
+  margin-top: 20px;
+}
+
+#see-matches{
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 18px;
 }
