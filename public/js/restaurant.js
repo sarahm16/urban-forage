@@ -4,6 +4,8 @@ const https = require("https");
 var searchQuery = "https://api.yelp.com/v3/businesses/search?";
 var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
 
+let radius = false;
+
 // Parameters
 // TODO Term (string) (search term) -- Required
 // Just search "restaurant"
@@ -24,6 +26,7 @@ function getCurrentLatLong(cb) {
     console.error("Geolocation is not supported by this browser");
   }
 }
+
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
@@ -67,15 +70,9 @@ function getCityLatLong(mapQuery) {
 
       res.on("error", err => {
         if (err) throw err;
-<<<<<<< HEAD
     });
 };
 
-=======
-      });
-    };
-}
->>>>>>> 52e13c0263505e263d21b99cb56371844f449d18
 // TODO Radius (int) -- Optional
 // Suggested search radius in meters, probably convert kms to freedom units, default radius of 10 miles maybe?
 
@@ -92,7 +89,7 @@ function getCityLatLong(mapQuery) {
 //      Page 2 - limit 50, offset 50
 //      Page 3 - limit 50, offset 100 and etc.
 
-// Need to consider the maximum number of restaurants to load (one at a time, but how many? Until all options are exhausted?)
+// Need to consider the maximum number of restaurants to load (one at a time, load 10 restaurants at a time)
 
 // TODO price (string) -- Optional
 // Give user the option to limit loaded restaurants based on the price.
