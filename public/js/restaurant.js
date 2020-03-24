@@ -36,6 +36,8 @@ function main() {
  */
 function buildSearchQuery() {
     let searchQuery = "https://api.yelp.com/v3/businesses/search?";
+    // By default add api key param
+    addKeyParam();
     // By default add this param // REQUIRED
     addStringParam();
     // Adds the params for lat and long of the searched city // REQUIRED
@@ -50,14 +52,14 @@ function buildSearchQuery() {
 }
 
 function addKeyParam() {
-
+    searchQuery += `key=${yelpKey}`;
 }
 
 // Parameters
 // Term (string) (search term) -- Required
 function addStringParam() {
   // Just search "restaurant"
-  searchQuery += "term=restaurant";
+  searchQuery += "&term=restaurant";
 }
 
 // Location (string) -- REQUIRED
