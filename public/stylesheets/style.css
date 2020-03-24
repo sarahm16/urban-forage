@@ -93,3 +93,7 @@ form.login {
 .btn{
   color: rgb(179, 98, 0);;
 }
+
+.user-email {
+  margin: 5px;
+}
