@@ -3,6 +3,9 @@ $(document).ready(function() {
 
   $("#find-restaurant").on("click", function() {
     $("#hide").show();
+    $("#find-restaurant").hide();
+    $("#users").hide();
+    $(".welcome").hide();
   });
 
   // This file just does a GET request to figure out which user is logged in

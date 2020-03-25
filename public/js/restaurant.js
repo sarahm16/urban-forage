@@ -39,6 +39,15 @@ function nextRestaurant() {
 
 //displaying next restaurant when user clicks thumbs up
 $("#thumbs-up").on("click", function() {
+  var newLike = {
+    user: "sarahmarie.carter@yahoo.com",
+    restaurantId: restaurants[index].name,
+    imageURL: restaurants[index].url,
+    latitude: 47.252876,
+    longitude: -122.444290
+  }
+  //console.log(newLike);
+  $.post("/api/likes/add", newLike);
   nextRestaurant();
   //function that puts restaurant in likes table
 });
