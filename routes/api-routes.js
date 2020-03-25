@@ -76,9 +76,9 @@ module.exports = function(app) {
   });
 
   app.get("/api/restaurants", function(req, res) {
-    console.log("accessing restaurants")
     res.render("restaurants");
   });
+
 
   // // route for adding restaurant to database
   // app.post("/api/restaurants", function(req, res) {
