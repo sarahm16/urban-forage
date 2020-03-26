@@ -104,7 +104,7 @@ module.exports = function(app) {
       longitude: req.body.longitude
     })
       .then(function(data) {
-        console.log(data)
+        //console.log(data)
         res.send(`Added like for ${req.body.restaurantId}!`);
       })
       .catch(function(err) {
