@@ -1,9 +1,43 @@
-    <div class="container restaurants">
-        <div id="restaurant-name">{{name}}</div>
-        <img id="restaurant-image" src="{{image_url}}">
-        
-        <div class="buttons">
-            <button id="thumbs-up"><i class=" thumbs fas fa-thumbs-up"></i></button>
-            <button id="thumbs-down"><i class="thumbs fas fa-thumbs-down"></i></button>
+
+  <div class="bg-image"></div>
+  <div class="main">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <h1 class="title text-center">Urban Forage <i class="fas fa-seedling"></i></h1>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/logout">
+            Logout
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class = "row">
+            <div class = "container restaurant-list">
+                <div class ="row">
+                    <div class = "col-md-12">
+                        <div class="container restaurants">
+                            <div id="restaurant-name">{{name}}</div>
+                            <img id="restaurant-image" src="{{image_url}}">
+                            <div class="buttons">
+                                <button id="thumbs-up"><i class=" thumbs fas fa-thumbs-up"></i></button>
+                                <button id="thumbs-down"><i class="thumbs fas fa-thumbs-down"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <div class ="row">
+            <div class = "col-md-12 text-center" id = "matches-div">
+                <a href="/api/match" >
+                    <button class="btn btn-outline-secondary" id ="see-matches" type="button">
+                        <i class="fas fa-dumpster-fire"></i>  Matches
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/restaurant.js"></script>
