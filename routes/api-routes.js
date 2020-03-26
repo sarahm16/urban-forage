@@ -54,20 +54,26 @@ module.exports = function(app) {
 
   // route for getting users
   app.get("/api/users", function(_req, res) {
-    db.User.findAll({  })
+    db.Like.findAll({ 
+      attributes: [db.Sequelize.fn('DISTINCT', db.Sequelize.col('user')) ,'user']
+      
+     })
       .then(function(usersData) {
         //console.log(usersData);
         var usersArray = [];
+        console.log(usersData)
         for(var i=0; i<usersData.length; i++) {
+      
           var user = {
-            id: usersData[i].id,
-            email: usersData[i].email
+            user: usersData[i].user
           }
+        
           usersArray.push(user);
         };
         var hbsObj = {
           users: usersArray
         };
+        
         res.render("users", hbsObj);
       })
       .catch(function(err) {
