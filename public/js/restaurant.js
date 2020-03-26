@@ -1,6 +1,6 @@
 const mapKey = "JprhJCXYJMxRCpTODmFal0wPQh9T04hp"; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
-const yelpKey = "Hb6aX_W6vp4XnTdk0V53KQpvXNGQ7BaIk_eCv-rmwiwyJdC0c2ij-2yG19dNp-KLKNZb8RUNbyOAQ7fnOTYFlbvD_2fhk6geLH8S6w_3it3JQGFz95kHe0IzZmd2XnYx";
-var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
+const yelpKey = "CfJsK0imSbCC04VXKuXZP2fd6UwnnmroGUxGl3xKIimg8ytZBYh3AdZDkPa0JygWzXv2NuutlXHXc8G7thannqJI-PPKEYOHynD_BR8_082Hyx6e_AIQtgvWmCN8XnYx";
+var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=${mapLocation}`;
 let radius = false;
 let price = false;
 let openAt = false;
@@ -33,7 +33,6 @@ function main() {
 function buildSearchQuery() {
     let searchQuery = "https://api.yelp.com/v3/businesses/search?";
     // By default add api key param
-    addKeyParam();
     // By default add this param // REQUIRED
     addStringParam();
     // Adds the params for lat and long of the searched city // REQUIRED
@@ -44,19 +43,17 @@ function buildSearchQuery() {
     addOpenNowParam();
     addOpenAtParam();
 
+    console.log(searchQuery);
     return searchQuery;
 }
 
-function addKeyParam() {
-    searchQuery += `key=${yelpKey}`;
-}
 
 // Parameters
 // Term (string) (search term) -- Required
 function addStringParam() {
   // Just search "restaurant"
-  searchQuery += "&term=restaurant";
-}
+  searchQuery += "term=restaurant";
+};
 
 <<<<<<< HEAD
 // Location (string) -- REQUIRED
@@ -99,7 +96,9 @@ function showError(error) {
 //      Use mapquest dev api for retrieving the coordinates
 //      Make the AJAX call to retrieve the coordinates
 function getCityLatLong() {
-  mapQuery = $("#submit-city").val();
+  // mapLocation = $("#submit-city").val();
+  mapLocation = "Seattle";
+  console.log(mapQuery);
 
   $.ajax({
     url: mapQuery,
@@ -109,33 +108,20 @@ function getCityLatLong() {
       let long;
 
       res.on('data', (chunk) => {
-        data += 'chunk';
+        data += chunk;
       });
 
       res.on('end', () => {
         let obj;
-        console.log(data);
+
         obj = JSON.parse(data);
-<<<<<<< HEAD
-        lat = obj.results.displayLatLng.lat;
+        latitude = obj.results.displayLatLng.lat;
         long = obj.results.displayLatLng.lng;
-        searchQuery += `&latitude=${lat}&longitude=${long}`;
-=======
-        //lat = obj.results.displayLatLng.lat;
-        //long = obj.results.displayLatLng.lng;
-<<<<<<< HEAD
-        // TODO Location (string) -- REQUIRED
-            // Need to provide as lat/long (decimal)
-        searchQuery += ""
-    });
-=======
-        //return [lat, long];
+        searchQuery += `&latitude=${latitude}&longitude=${long}`;
       });
->>>>>>> 52e13c0263505e263d21b99cb56371844f449d18
 
       res.on("error", err => {
         if (err) throw err;
->>>>>>> master
       });
     }
   });
@@ -202,6 +188,9 @@ function addOpenAtParam() {
 function getRestaurantData(searchQuery) {
   $.ajax({
     url: searchQuery,
+    headers: {
+      'Authorization': `Bearer ${yelpKey}`
+    },
     success: (res) => {
         let data = "";
 
