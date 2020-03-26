@@ -33,10 +33,7 @@ form.login {
   width: 30%;
   padding-top: 0px;
   text-align: center;
-  position: fixed;
   margin: 0 auto;
-  left: 35%;
-  top: 25%;
 }
 
 #restaurant-name {
@@ -56,9 +53,9 @@ form.login {
   margin-bottom: 5px;
 }
 
-.buttons {
-  padding-bottom: 10px;
-}
+/* .city-form {
+  margin-top: 25%;
+} */
 
 #thumbs-up {
   color: green;
@@ -78,18 +75,44 @@ form.login {
 .label,
 .form-label {
   /* color: rgb(63, 63, 63); */
-  color: lightsalmon;
+  color: rgb(241,224,181);
 }
 
 .signup-label,
 .login-label {
-  color: white;
+  color: rgb(76,72,75)
 }
 
 .welcome{
-  color: lightsalmon;
+  color: rgb(241,224,181);
 }
 
 .btn{
   color: rgb(179, 98, 0);;
+}
+
+
+#city-search{
+  display: inline-block;
+}
+.city{
+  display: inline;
+}
+.user-email {
+  margin: 5px;
+
+}
+
+.restaurant-list{
+  margin-top: 50px;
+}
+
+#matches-div{
+  margin-top: 20px;
+}
+
+#see-matches{
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 18px;
 }

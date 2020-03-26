@@ -2,34 +2,52 @@
   <div class="main">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <h1 class="title text-center">Urban Forage <i class="fas fa-seedling"></i></h1>
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/logout">
-            Logout
-          </a>
-        </div>
+        <h1 class="title text-center">
+          <a class="navbar-brand" href="/logout">Logout</a>
+          Urban Forage <i class="fas fa-seedling"></i></h1>
+        <div class="navbar-header"></div>
       </div>
     </nav>
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h2 class = "welcome">Welcome <span class="member-name"></span></h2>
+          <h2 class="welcome">Welcome <span class="member-name"></span></h2>
         </div>
       </div>
       <div class = "row">
         <div class="col-md-6 col-md-offset-3 buttons">
-          <a href="/api/users"><button id = "users" class="btn btn-outline-primary btn-lg search">
-            <i class="fas fa-utensils"></i>  Find a Friend 
+          <a href="/api/users"><button id="users" class="btn btn-outline-primary btn-lg search">
+            <i class="fas fa-user-friends"></i>  Find a Friend 
           </button></a>
-          <a href="/api/restaurants"><button id = "find-restaurant" class="btn btn-outline-primary btn-lg search">
-            <i class="fas fa-user-friends"></i>  Find a Restaurant
-          </button></a>
+          <button id = "find-restaurant" class="btn btn-outline-primary btn-lg search">
+            <i class="fas fa-utensils"></i>  Find a Restaurant
+          </button>
         </div>
-        <div class="city">
-          <input type="text"><button id="submit-city">Search</button>
+      </div>
+      <div class = "row" id="hide">
+        <div class = "col-md-6 col-md-offset-3 buttons">  
+          <div class="input-group">
+            <input type="text" class="form-control" id = "city-search" placeholder="Enter a City">
+              <span class="input-group-btn">
+                <a  href="/api/restaurants">
+                  <button class="btn btn-default" type="button" id ="submit-city"> <i class="fas fa-search"></i> Search</button>
+                </a>
+              </span>
+            </div>         
+          {{!-- <div class="input-group mb-3" id = "">
+            <input type="text" class="form-control" id = "city-search" placeholder="Enter a City" aria-label="Search for a City" aria-describedby="basic-addon2">
+            <div class="input-group-append city">
+              <a href="/api/restaurants">
+                <button class="btn btn-outline-secondary" id ="submit-city" type="button">
+                  <i class="fas fa-search"></i> Search
+                </button>
+              </a> --}}
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-    </div>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/members.js"></script>
+    {{!-- <script type="text/javascript" src="/js/restaurant.js"></script> --}}
