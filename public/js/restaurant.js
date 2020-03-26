@@ -263,10 +263,8 @@ function getRestaurantData(searchQuery) {
       }
   });
   
-      res.on("error", err => {
+  res.on("error", err => {
         if (err) throw err;
-      });
-    };
+  });
 };
-}
 
