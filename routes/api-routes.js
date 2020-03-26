@@ -76,7 +76,6 @@ module.exports = function(app) {
   });
 
   app.get("/api/restaurants", function(req, res) {
-    console.log("accessing restaurants")
     res.render("restaurants");
   });
 
@@ -101,7 +100,8 @@ module.exports = function(app) {
 
   // route for adding like to database
   app.post("/api/likes/add", function(req, res) {
-    console.log(`Attempting to add ${JSON.stringify(req.body)}`)
+    console.log(req.body);
+    //console.log(`Attempting to add ${JSON.stringify(req.body)}`)
     db.Like.create({
       user: req.body.user,
       restaurantId: req.body.restaurantId,
