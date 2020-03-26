@@ -230,39 +230,39 @@ function getRestaurantData(searchQuery) {
   $.ajax({
     url: searchQuery,
     success: (res) => {
-        let data = "";
+      let data = "";
 
-        res.on("data", chunk => {
-          data += chunk;
-        });
+      res.on("data", chunk => {
+        data += chunk;
+      });
 
-        res.on("end", () => {
-          console.log(JSON.parse(data).explanation);
+      res.on("end", () => {
+        console.log(JSON.parse(data).explanation);
 
-          // create a data object of the restaurant info
-          let completeData = JSON.parse(data);
+        // create a data object of the restaurant info
+        let completeData = JSON.parse(data);
 
-          // build array of restaurant data and return it
-          let restaurants = [];
-          for (let i = 0; i < 10; i++) {
-            let restaurant = {
-              name: completeData[index].name,
-              imgUrl: completeData[index].image_url
-            };
-            restaurants.push(restaurant);
-          }
-          return restaurants;
-        });
+        // build array of restaurant data and return it
+        let restaurants = [];
+        for (let i = 0; i < 10; i++) {
+          let restaurant = {
+            name: completeData[index].name,
+            imgUrl: completeData[index].image_url
+          };
+          restaurants.push(restaurant);
+        }
+        return restaurants;
+      });
 
-        res.on("error", err => {
-          if (err) throw err;
-        });
-      }
- });
-  
       res.on("error", err => {
         if (err) throw err;
       });
+    }
+  });
+
+  res.on("error", err => {
+    if (err) throw err;
+  });
 }
 
 
