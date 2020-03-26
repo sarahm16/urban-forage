@@ -90,6 +90,11 @@ module.exports = function(app) {
     console.log("accessing matches")
     res.render("match");
   });
+  
+  app.get("/api/userTwoRestaurants", function(req, res) {
+    console.log("accessing user one likes")
+    res.render("userTwoRestaurants");
+  });
 
   // // route for adding restaurant to database
   // app.post("/api/restaurants", function(req, res) {
