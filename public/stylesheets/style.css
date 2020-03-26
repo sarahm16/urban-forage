@@ -75,16 +75,16 @@ form.login {
 .label,
 .form-label {
   /* color: rgb(63, 63, 63); */
-  color: lightsalmon;
+  color: rgb(241,224,181);
 }
 
 .signup-label,
 .login-label {
-  color: white;
+  color: rgb(76,72,75)
 }
 
 .welcome{
-  color: lightsalmon;
+  color: rgb(241,224,181);
 }
 
 .btn{

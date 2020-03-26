@@ -24,14 +24,26 @@
           </button>
         </div>
       </div>
-      <div class="row" id="hide">
-        <div class = "col-md-6 col-md-offset-3 buttons">           
-            <form class="form-inline text-center city-form">
-              <input type="text" class="form-control" id="city-search" placeholder="Enter a City" aria-label="Search for a City" aria-describedby="basic-addon2">
-              <a href="/api/restaurants"><button class="btn btn-outline-secondary" id ="submit-city" type="button">
+      <div class = "row" id="hide">
+        <div class = "col-md-6 col-md-offset-3 buttons">  
+          <div class="input-group">
+            <input type="text" class="form-control" id = "city-search" placeholder="Enter a City">
+              <span class="input-group-btn">
+                <a  href="/api/restaurants">
+                  <button class="btn btn-default" type="button" id ="submit-city"> <i class="fas fa-search"></i> Search</button>
+                </a>
+              </span>
+            </div>         
+          {{!-- <div class="input-group mb-3" id = "">
+            <input type="text" class="form-control" id = "city-search" placeholder="Enter a City" aria-label="Search for a City" aria-describedby="basic-addon2">
+            <div class="input-group-append city">
+              <a href="/api/restaurants">
+                <button class="btn btn-outline-secondary" id ="submit-city" type="button">
                   <i class="fas fa-search"></i> Search
-              </button></a>
-            </form>
+                </button>
+              </a> --}}
+            </div>
+          </div>
         </div>
       </div>
     </div>

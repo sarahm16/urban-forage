@@ -1,6 +1,5 @@
 const mapKey = "JprhJCXYJMxRCpTODmFal0wPQh9T04hp"; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
 const yelpKey = "Hb6aX_W6vp4XnTdk0V53KQpvXNGQ7BaIk_eCv-rmwiwyJdC0c2ij-2yG19dNp-KLKNZb8RUNbyOAQ7fnOTYFlbvD_2fhk6geLH8S6w_3it3JQGFz95kHe0IzZmd2XnYx";
-//const https = require("https");
 var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
 let radius = false;
 let price = false;
@@ -148,30 +147,28 @@ function showError(error) {
 //      Make the AJAX call to retrieve the coordinates
 function getCityLatLong() {
   mapQuery = $("#city-search").val();
-  https.get(mapQuery),
-    res => {
+
+  $.ajax({
+    url: mapQuery,
+    success: (res) => {
       let data = "";
       let lat;
       let long;
 
-      res.on("data", chunk => {
-        data += chunk;
+      res.on('data', (chunk) => {
+        data += 'chunk';
       });
 
-      // At this point, turn into JSON and retrieve results.displayLatLng.lat and results.displayLatLng.lng
-      res.on("end", () => {
+      res.on('end', () => {
         let obj;
         console.log(data);
         obj = JSON.parse(data);
         lat = obj.results.displayLatLng.lat;
         long = obj.results.displayLatLng.lng;
-        searchQuery += `&latitude=${lat}&longitude=${long}`
+        searchQuery += `&latitude=${lat}&longitude=${long}`;
       });
-
-      res.on("error", err => {
-        if (err) throw err;
-      });
-    };
+    }
+  });
 }
 
 // Radius (int) -- Optional
@@ -233,35 +230,45 @@ function addOpenAtParam() {
 // Make the AJAX call
 
 function getRestaurantData(searchQuery) {
-  https.get(searchQuery),
-    res => {
-      let data = "";
+  $.ajax({
+    url: searchQuery,
+    success: (res) => {
+      res => {
+        let data = "";
 
-      res.on("data", chunk => {
-        data += chunk;
-      });
+        res.on("data", chunk => {
+          data += chunk;
+        });
 
-      res.on("end", () => {
-        console.log(JSON.parse(data).explanation);
+        res.on("end", () => {
+          console.log(JSON.parse(data).explanation);
 
-        // create a data object of the restaurant info
-        let completeData = JSON.parse(data);
+          // create a data object of the restaurant info
+          let completeData = JSON.parse(data);
 
-        // build array of restaurant data and return it
-        let restaurants = [];
-        for (let i = 0; i < 10; i++) {
-          let restaurant = {
-            name: completeData[index].name,
-            imgUrl: completeData[index].image_url
-          };
-          restaurants.push(restaurant);
-        }
-         return restaurants;
-      });
+          // build array of restaurant data and return it
+          let restaurants = [];
+          for (let i = 0; i < 10; i++) {
+            let restaurant = {
+              name: completeData[index].name,
+              imgUrl: completeData[index].image_url
+            };
+            restaurants.push(restaurant);
+          }
+          return restaurants;
+        });
 
+        res.on("error", err => {
+          if (err) throw err;
+        });
+      };
+    }
+  });
+  
       res.on("error", err => {
         if (err) throw err;
       });
     };
 };
+}
 
