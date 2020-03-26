@@ -183,7 +183,6 @@ function getRestaurantData(searchQuery) {
   $.ajax({
     url: searchQuery,
     success: (res) => {
-      res => {
         let data = "";
 
         res.on("data", chunk => {
@@ -211,8 +210,7 @@ function getRestaurantData(searchQuery) {
         res.on("error", err => {
           if (err) throw err;
         });
-      };
-    }
+      }
   });
 
 }
