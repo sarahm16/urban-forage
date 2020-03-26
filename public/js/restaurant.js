@@ -267,6 +267,5 @@ function getRestaurantData(searchQuery) {
         if (err) throw err;
       });
     };
-};
-}
+
 
