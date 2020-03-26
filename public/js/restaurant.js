@@ -58,9 +58,12 @@ function addStringParam() {
   searchQuery += "&term=restaurant";
 }
 
+<<<<<<< HEAD
 // Location (string) -- REQUIRED
 // Need to provide as lat/long (decimal), so give user option to search for restaurants within a certain city?
 
+=======
+>>>>>>> master
 // 1. Get desired restaurant location by name
 //      Need id or class of field that this will come from (input field probably?)
 
@@ -113,9 +116,26 @@ function getCityLatLong() {
         let obj;
         console.log(data);
         obj = JSON.parse(data);
+<<<<<<< HEAD
         lat = obj.results.displayLatLng.lat;
         long = obj.results.displayLatLng.lng;
         searchQuery += `&latitude=${lat}&longitude=${long}`;
+=======
+        //lat = obj.results.displayLatLng.lat;
+        //long = obj.results.displayLatLng.lng;
+<<<<<<< HEAD
+        // TODO Location (string) -- REQUIRED
+            // Need to provide as lat/long (decimal)
+        searchQuery += ""
+    });
+=======
+        //return [lat, long];
+      });
+>>>>>>> 52e13c0263505e263d21b99cb56371844f449d18
+
+      res.on("error", err => {
+        if (err) throw err;
+>>>>>>> master
       });
     }
   });
