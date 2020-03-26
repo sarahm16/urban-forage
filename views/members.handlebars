@@ -2,23 +2,21 @@
   <div class="main">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <h1 class="title text-center">Urban Forage <i class="fas fa-seedling"></i></h1>
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/logout">
-            Logout
-          </a>
-        </div>
+        <h1 class="title text-center">
+          <a class="navbar-brand" href="/logout">Logout</a>
+          Urban Forage <i class="fas fa-seedling"></i></h1>
+        <div class="navbar-header"></div>
       </div>
     </nav>
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h2 class = "welcome">Welcome <span class="member-name"></span></h2>
+          <h2 class="welcome">Welcome <span class="member-name"></span></h2>
         </div>
       </div>
       <div class = "row">
         <div class="col-md-6 col-md-offset-3 buttons">
-          <a href="/api/users"><button id = "users" class="btn btn-outline-primary btn-lg search">
+          <a href="/api/users"><button id="users" class="btn btn-outline-primary btn-lg search">
             <i class="fas fa-user-friends"></i>  Find a Friend 
           </button></a>
           <button id = "find-restaurant" class="btn btn-outline-primary btn-lg search">
@@ -52,3 +50,4 @@
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/members.js"></script>
+    {{!-- <script type="text/javascript" src="/js/restaurant.js"></script> --}}
