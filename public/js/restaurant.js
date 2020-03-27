@@ -497,6 +497,7 @@ function addOpenAtParam() {
 }
 
 
+
 // Make the AJAX call
 
 function getRestaurantData(searchQuery) {
