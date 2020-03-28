@@ -147,8 +147,9 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/restaurants/:searchQuery", (req, res) => {
+  app.post("/api/restaurants/:searchQuery", async (req, res) => {
     let searchQuery = req.params.searchQuery;
-    rest.main(searchQuery);
+    let temp = await rest.getRestaurantData(searchQuery);
+    console.log(temp);
   })
 };

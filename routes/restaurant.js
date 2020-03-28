@@ -1,11 +1,7 @@
 const yelp = require('yelp-fusion');
 const client = yelp.client('CfJsK0imSbCC04VXKuXZP2fd6UwnnmroGUxGl3xKIimg8ytZBYh3AdZDkPa0JygWzXv2NuutlXHXc8G7thannqJI-PPKEYOHynD_BR8_082Hyx6e_AIQtgvWmCN8XnYx');
 
-function main(cityName) {
-    getRestaurantData(cityName);
-};
-
-function getRestaurantData(cityName) {
+async function getRestaurantData(cityName) {
   client.search({
     term: 'restaurant',
     location: cityName,
@@ -30,4 +26,4 @@ function getRestaurantData(cityName) {
     });
   };
 
-module.exports.main = main;
+module.exports.getRestaurantData = getRestaurantData;
