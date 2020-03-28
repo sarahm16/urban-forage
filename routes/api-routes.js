@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+const rest = require('./restaurant.js');
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -83,6 +84,12 @@ module.exports = function(app) {
 
   app.get("/api/restaurants", function(req, res) {
     res.render("restaurants");
+
+  });
+
+  app.post("/api/restaurants", (req, res) => {
+    console.log(req.body);
+
   });
 
   app.get("/api/userTwoRestaurants", function(req, res) {
@@ -143,5 +150,11 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
+
+  app.post("/api/restaurants/:searchQuery", async (req, res) => {
+    let searchQuery = req.params.searchQuery;
+    let temp = await rest.getRestaurantData(searchQuery);
+    console.log(temp);
+  })
 };
 
