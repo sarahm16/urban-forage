@@ -27,7 +27,7 @@ module.exports = function(app) {
         res.redirect(307, "/api/login");
       })
       .catch(function(err) {
-        res.status(401).json(err);
+        res.status(401).json(err.errors[0].message);
       });
   });
 
@@ -101,19 +101,6 @@ module.exports = function(app) {
     console.log("accessing matches")
     res.render("match");
   });
-
-  // // route for adding restaurant to database
-  // app.post("/api/restaurants", function(req, res) {
-  //   db.Restaurant.create({
-  //     name: req.body.restaurant
-  //   })
-  //     .then(function() {
-  //       res.send(`Added restaurant ${req.body.restaurant}!`);
-  //     })
-  //     .catch(function(err) {
-  //       res.status(401).json(err);
-  //     });
-  // });
 
   // route for adding like to database
   app.post("/api/likes/add", function(req, res) {
