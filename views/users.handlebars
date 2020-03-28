@@ -1,20 +1,21 @@
 <div class="bg-image"></div>
 <div class="main">
-  <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
       <div class="container-fluid">
         <h1 class="title text-center">
-          <a class="navbar-brand" href="/logout">Logout</a>
-          Urban Forage <i class="fas fa-seedling"></i>
+          <a class="navbar-brand" href="/logout">
+            Logout
+          </a>Urban Forage <i class="fas fa-seedling"></i>
         </h1>
       </div>
-  </nav>
+    </nav>
 
   {{!-- <h2 class="form-label text-center">Pick a friend</h2> --}}
 
   <div class="container users">
       <div class="user-emails"></div>
           {{#each users}}
-              <button id="{{user}}" class="user-email btn btn-outline-primary btn-lg">{{user}}</button>
+              <a href = "/api/userTwoRestaurants" ><button data-user="{{user}}" class="user-email username btn btn-outline-primary btn-lg">{{user}}</button> </a>
               <br>
           {{/each}}
       </div>
@@ -22,3 +23,4 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/users.js"></script>
