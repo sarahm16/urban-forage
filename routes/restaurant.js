@@ -1,7 +1,7 @@
 const yelp = require('yelp-fusion');
 const client = yelp.client('CfJsK0imSbCC04VXKuXZP2fd6UwnnmroGUxGl3xKIimg8ytZBYh3AdZDkPa0JygWzXv2NuutlXHXc8G7thannqJI-PPKEYOHynD_BR8_082Hyx6e_AIQtgvWmCN8XnYx');
 
-async function main(cityName) {
+function main(cityName) {
     getRestaurantData(cityName);
 };
 
