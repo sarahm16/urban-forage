@@ -36,6 +36,11 @@ form.login {
   margin: 0 auto;
 }
 
+#price {
+  background-color: white;
+  color: green;
+}
+
 #restaurant-name {
   background-color: white;
   color: rgb(179, 98, 0);

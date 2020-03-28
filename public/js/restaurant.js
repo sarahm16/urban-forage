@@ -240,12 +240,14 @@ var index = 0;
 //setting initial restaurant to the first restaurant in the array
 $("#restaurant-name").text(response[0].name);
 $("#restaurant-image").attr("src", response[0]["image_url"]);
+$("#price").text(response[0].price)
 
 function nextRestaurant() {
   index += 1;
   if(index<response.length) {
     $("#restaurant-name").text(response[index].name);
     $("#restaurant-image").attr("src", response[index]["image_url"]);
+    $("#price").text(response[i].price)
   }
   else {
     $("#see-matches").show();
