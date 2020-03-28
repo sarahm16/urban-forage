@@ -41,7 +41,7 @@ form.login {
   color: green;
 }
 
-#restaurant-name {
+#restaurant-name, #match-name{
   background-color: white;
   color: rgb(179, 98, 0);
   font-weight: bold;
@@ -52,7 +52,7 @@ form.login {
   text-align: center;
 }
 
-#restaurant-image {
+#restaurant-image, #match-image {
   width: 90%;
   margin: 0 auto;
   margin-top: 5px;
@@ -117,8 +117,7 @@ form.login {
   margin-top: 20px;
 }
 
-#see-matches{
-  padding-left: 50px;
-  padding-right: 50px;
-  font-size: 18px;
+
+#match-head{
+  color: rgb(241,224,181);
 }
