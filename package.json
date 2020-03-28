@@ -14,6 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajax": "0.0.4",
+    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "bcryptjs": "2.4.3",
     "express": "^4.17.0",

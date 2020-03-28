@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+const rest = require('./restaurant.js');
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -85,6 +86,12 @@ module.exports = function(app) {
     res.render("restaurants");
   });
 
+  app.post("/api/restaurants", (req, res) => {
+    console.log(req.body);
+    rest.main();
+
+  });
+
 
   app.get("/api/match", function(req, res) {
     console.log("accessing matches")
@@ -139,4 +146,9 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
+
+  app.post("/api/restaurants", (req, res) => {
+    let searchQuery = $("#submit-city").val();
+
+  })
 };
