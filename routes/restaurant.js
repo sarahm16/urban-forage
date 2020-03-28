@@ -1,123 +1,33 @@
-// const yelp = require('yelp-fusion');
-// const client = yelp.client('CfJsK0imSbCC04VXKuXZP2fd6UwnnmroGUxGl3xKIimg8ytZBYh3AdZDkPa0JygWzXv2NuutlXHXc8G7thannqJI-PPKEYOHynD_BR8_082Hyx6e_AIQtgvWmCN8XnYx');
-const yelpKey = 'CfJsK0imSbCC04VXKuXZP2fd6UwnnmroGUxGl3xKIimg8ytZBYh3AdZDkPa0JygWzXv2NuutlXHXc8G7thannqJI-PPKEYOHynD_BR8_082Hyx6e_AIQtgvWmCN8XnYx';
-const mapKey = "JprhJCXYJMxRCpTODmFal0wPQh9T04hp"; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
-var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
-
-const axios = require('axios');
-const https = require('http');
-const request = require('request');
+const yelp = require('yelp-fusion');
+const client = yelp.client('CfJsK0imSbCC04VXKuXZP2fd6UwnnmroGUxGl3xKIimg8ytZBYh3AdZDkPa0JygWzXv2NuutlXHXc8G7thannqJI-PPKEYOHynD_BR8_082Hyx6e_AIQtgvWmCN8XnYx');
 
 async function main(cityName) {
-    let searchString = await buildSearchQuery(cityName);
-    console.log(getRestaurantData(searchString));
+    getRestaurantData(cityName);
 };
 
-async function buildSearchQuery(cityName) {
-    searchQuery = "http://api.yelp.com/v3/businesses/search?";
-    searchQuery = addStringParam(searchQuery, cityName);  // FUNCTIONAL
-    return searchQuery;
-}
+function getRestaurantData(cityName) {
+  client.search({
+    term: 'restaurant',
+    location: cityName,
+    radius: 16094,
+    open_now: true,
+    limit: 10,
+    offset: 0,
 
-function addStringParam(searchQuery, cityName) {
-  searchQuery += "term=restaurant";
-  getCityLatLong(searchQuery, cityName)
-};
-
-function getCityLatLong(searchQuery, cityName) {
-  mapQuery += cityName;
-  https.get(
-    mapQuery, (res) => {
-      let temp = '';
-      let latitude;
-      let long;
-
-      res.on('data', (d) => {
-        temp += d;
-      });
-
-      res.on('end', () => {
-        let completeData = JSON.parse(temp);
-
-        latitude = completeData.results[0].locations[0].displayLatLng.lat;
-        long = completeData.results[0].locations[0].displayLatLng.lng;
-
-        searchQuery += `&latitude=${latitude}&longitude=${long}`;
-        addRadiusParam(searchQuery);
-      });
-
-
-    }).on('error', (e) => {
-      console.log('printing error');
-    console.error(e);
-  });
-};
-
-function addRadiusParam(searchQuery) {
-  searchQuery += '&radius=16094';
-  addLimAndOffParam(searchQuery);
-};
-
-
-// limit and offset (int) -- REQUIRED
-// limit is the # of businesses to return, offset is the list of returned business results by this amount
-// e.g. Page 1 - limit 50, offset 0
-//      Page 2 - limit 50, offset 50
-//      Page 3 - limit 50, offset 100 and etc.
-function addLimAndOffParam(searchQuery) {
-  searchQuery += `&limit=10&offset=0`; // Need to find a way to increment the offset by 10 for every time we access 10 restaurants
-  addOpenNowParam(searchQuery);
-}
-
-// Need to consider the maximum number of restaurants to load (one at a time, load 10 restaurants at a time)
-
-function addOpenNowParam(searchQuery) {
-  searchQuery += "&open_now=true";
-  getRestaurantData(searchQuery);
-};
-
-function getRestaurantData(searchQuery) {
-  const headers =
-    {
-      headers: {
-        'Authorization': `Bearer ${yelpKey}`,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true'
-      }
-    };
-
-  https.get(searchQuery,{headers: headers}, (req, res) => {
-    let temp = '';
-
-    console.log(req, res);
-
-    res.on('data', (d) => {
-      temp += d;
+  }).then((res) => {
+    let restaurants = [];
+    for (let i = 0; i < 10; i++) {
+      let restaurant = {
+        name: res.jsonBody.businesses[i].name,
+        imgUrl: res.jsonBody.businesses[i].image_url
+      };
+      restaurants.push(restaurant);
+    }
+    return restaurants;
+  })
+  .catch((err) => {
+      if (err) throw err;
     });
-
-    res.on('end', () => {
-      let completeData = JSON.parse(temp);
-
-      console.log(`Printing complete data: ${completeData}`);
-      let restaurants = [];
-      for (let i = 0; i < 10; i++) {
-        let restaurant = {
-          name: completeData[index].name,
-          imgUrl: completeData[index].image_url
-        };
-        restaurants.push(restaurant);
-      }
-      console.log(restaurants);
-      return restaurants;
-    });
-
-
-  }).on('error', (e) => {
-    console.error(e);
-  });
-};
+  };
 
 module.exports.main = main;
-
-
-
