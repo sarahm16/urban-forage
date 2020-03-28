@@ -1,8 +1,12 @@
+
 $(document).ready(function(){
+    let userOne = localStorage.getItem('userOne')
+     console.log(userOne);   
     
-    $(".username").on("click", function() {
-        const userOne = $(this).attr("data-user");
-        console.log(userOne);
+    $.get(`/api/showLikes/${userOne}`).then(function(data) {
+        const userOneLikes = data 
+        localStorage.clear()
+        console.log(data);
         var index = 0;
 
         //setting initial restaurant to the first restaurant in the array
@@ -41,8 +45,8 @@ $(document).ready(function(){
         $("#thumbs-down").on("click", function() {
         nextRestaurant();
         });
-    
-
     });
 });
+
+
 
