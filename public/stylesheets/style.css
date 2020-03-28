@@ -31,15 +31,21 @@ form.login {
   background-color: rgb(211, 211, 211);
   border-radius: 10px;
   width: 30%;
-  padding-top: 0px;
+  padding: 0px 0px 5px 0px;
   text-align: center;
   margin: 0 auto;
+}
+
+#price {
+  background-color: white;
+  color: green;
 }
 
 #restaurant-name {
   background-color: white;
   color: rgb(179, 98, 0);
   font-weight: bold;
+  border-radius: 3px;
   padding: 10px 0px 10px 0px;
   margin: 0px;
   width: 100%;
