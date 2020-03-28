@@ -1,10 +1,3 @@
-const mapKey = "JprhJCXYJMxRCpTODmFal0wPQh9T04hp"; // NEED TO ENCRYPT KEYS BUT HOW DO I DO THAT
-const yelpKey = "Hb6aX_W6vp4XnTdk0V53KQpvXNGQ7BaIk_eCv-rmwiwyJdC0c2ij-2yG19dNp-KLKNZb8RUNbyOAQ7fnOTYFlbvD_2fhk6geLH8S6w_3it3JQGFz95kHe0IzZmd2XnYx";
-var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
-let radius = false;
-let price = false;
-let openAt = false;
-
 $("#see-matches").hide();
 
 //sample restaurant array
@@ -242,13 +235,12 @@ $("#restaurant-name").text(response[0].name);
 $("#restaurant-image").attr("src", response[0]["image_url"]);
 $("#price").text(response[0].price)
 
-
 function nextRestaurant() {
   index += 1;
-  if(index<response.length) {
+  if(index < response.length) {
     $("#restaurant-name").text(response[index].name);
     $("#restaurant-image").attr("src", response[index]["image_url"]);
-    $("#price").text(response[i].price)
+    $("#price").text(response[i].price);
   }
   else {
     $("#see-matches").show();
@@ -265,12 +257,12 @@ $("#thumbs-up").on("click", function() {
       imageURL: response[index]["image_url"],
       latitude: response[index].coordinates.latitude,
       longitude: response[index].coordinates.longitude
-    }
+    };
     $.post("/api/likes/add", newLike);
-  })
+  });
   nextRestaurant();
 });
 
 $("#thumbs-down").on("click", function() {
   nextRestaurant();
-
+});
