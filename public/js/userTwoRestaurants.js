@@ -1,43 +1,48 @@
 $(document).ready(function(){
-    let userOne = localStorage.getItem("userOne");
-
-    $.get(`/api/userTwoRestaurants/${userOne}`).then(function(data) {
-        const userOneLikes = data 
-      
-        console.log(data);
-
+    
+    $(".username").on("click", function() {
+        const userOne = $(this).attr("data-user");
+        console.log(userOne);
         var index = 0;
-    
-        //setting initial restaurant to the first restaurant in the array
-        var restaurants = data[0];
-        console.log(restaurants);
-    
-        function nextRestaurant() {
-            index += 1;
 
+        //setting initial restaurant to the first restaurant in the array
+        $("#restaurant-name").text(response[0].name);
+        $("#restaurant-image").attr("src", response[0]["image_url"]);
+        $("#price").text(response[0].price)
+
+        function nextRestaurant() {
+        index += 1;
+        if(index < response.length) {
+            $("#restaurant-name").text(response[index].name);
+            $("#restaurant-image").attr("src", response[index]["image_url"]);
+            $("#price").text(response[i].price);
         }
-        let matches = []
+        else {
+            $("#see-matches").show();
+        }
+        }
+
         //displaying next restaurant when user clicks thumbs up
         $("#thumbs-up").on("click", function() {
-            
+        $.get("/api/user_data").then(function(data) {
+            console.log(data.email);
             var newLike = {
-                restaurantId: restaurants[index].name,
-                url: restaurants[index].url,
-                imageURL: restaurants[index].imageURL,
-                latitude: restaurants[index].latitude,
-                longitude: restaurants[index].longitude
-            }
-        //console.log(newLike);
-            matches.push(newLike);
-            console.log(newLike);
-            nextRestaurant();
-        //function that puts restaurant in likes table
+            user: data.email,
+            restaurantId: response[index].name,
+            imageURL: response[index]["image_url"],
+            latitude: response[index].coordinates.latitude,
+            longitude: response[index].coordinates.longitude
+            };
+            $.post("/api/likes/add", newLike);
         });
-    
+        nextRestaurant();
+        });
+
         $("#thumbs-down").on("click", function() {
         nextRestaurant();
-        })
-    });
+        });
     
+
+    });
 });
 
