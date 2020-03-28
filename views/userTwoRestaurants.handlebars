@@ -12,27 +12,19 @@
     </nav>
     <div class="container">
       <div class = "row">
-            <div class = "container restaurant-list">
+          <div class = "container restaurant-list">
                 <div class ="row">
                     <div class = "col-md-12">
                         <div class="container restaurants">
                             <div id="restaurant-name">{{restaurantId}}</div>
                             <img id="restaurant-image" src="{{imageURL}}">
                             <div class="buttons">
-                                <button id="thumbs-up"><i class=" thumbs fas fa-thumbs-up"></i></button>
+                                <a href = "/api/match"><button id="thumbs-up"><i class=" thumbs fas fa-thumbs-up"></i></button></a>
                                 <button id="thumbs-down"><i class="thumbs fas fa-thumbs-down"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-        <div class ="row">
-            <div class = "col-md-12 text-center" id = "matches-div">
-                <a href="/api/match" >
-                    <button class="btn btn-outline-secondary" id ="see-matches" type="button">
-                        <i class="fas fa-dumpster-fire"></i>  Matches
-                    </button>
-                </a>
-            </div>
         </div>
     </div>
 </div>
