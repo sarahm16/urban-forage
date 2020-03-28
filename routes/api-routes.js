@@ -85,6 +85,10 @@ module.exports = function(app) {
     res.render("restaurants");
   });
 
+  app.get("/api/userTwoRestaurants", function(req, res) {
+    res.render("userTwoRestaurants");
+  });
+
 
   app.get("/api/match", function(req, res) {
     console.log("accessing matches")
@@ -140,3 +144,4 @@ module.exports = function(app) {
       });
   });
 };
+
