@@ -30,8 +30,8 @@ form.login {
 .restaurants {
   background-color: rgb(211, 211, 211);
   border-radius: 10px;
-  width: 50%;
-  padding-top: 0px;
+  width: 30%;
+  padding: 0px 0px 5px 0px;
   text-align: center;
   margin: 0 auto;
 }
