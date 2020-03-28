@@ -84,11 +84,11 @@ module.exports = function(app) {
 
   app.get("/api/restaurants", function(req, res) {
     res.render("restaurants");
+
   });
 
   app.post("/api/restaurants", (req, res) => {
     console.log(req.body);
-    rest.main();
 
   });
 
@@ -147,8 +147,8 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/restaurants", (req, res) => {
-    let searchQuery = $("#submit-city").val();
-
+  app.post("/api/restaurants/:searchQuery", (req, res) => {
+    let searchQuery = req.params.searchQuery;
+    rest.main(searchQuery);
   })
 };

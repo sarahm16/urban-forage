@@ -13,4 +13,11 @@ $(document).ready(function() {
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
   });
+
+  $("#submit-city").on('click', function() {
+    let searchCity = $("#city-search").val();
+    console.log(searchCity);
+    alert(searchCity);
+    $.post('api/restaurants/' + searchCity);
+  });
 });
