@@ -237,6 +237,8 @@ $("#see-matches").hide();
 
 var index = 0;
 
+// Commented out for now because the response variable is not defined yet
+
 // //setting initial restaurant to the first restaurant in the array
 // $("#restaurant-name").text(response[0].name);
 // $("#restaurant-image").attr("src", response[0]["image_url"]);
