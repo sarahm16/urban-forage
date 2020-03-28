@@ -16,8 +16,6 @@ $(document).ready(function() {
 
   $("#submit-city").on('click', function() {
     let searchCity = $("#city-search").val();
-    console.log(searchCity);
-    alert(searchCity);
     $.post('api/restaurants/' + searchCity);
   });
 });

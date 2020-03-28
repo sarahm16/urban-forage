@@ -5,14 +5,16 @@ const mapKey = "JprhJCXYJMxRCpTODmFal0wPQh9T04hp"; // NEED TO ENCRYPT KEYS BUT H
 var mapQuery = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapKey}&location=`;
 
 const axios = require('axios');
+const https = require('http');
+const request = require('request');
 
 async function main(cityName) {
     let searchString = await buildSearchQuery(cityName);
-    getRestaurantData(searchString);
+    console.log(getRestaurantData(searchString));
 };
 
 async function buildSearchQuery(cityName) {
-    searchQuery = "https://api.yelp.com/v3/businesses/search?";
+    searchQuery = "http://api.yelp.com/v3/businesses/search?";
     searchQuery = addStringParam(searchQuery, cityName);  // FUNCTIONAL
     return searchQuery;
 }
@@ -24,70 +26,32 @@ function addStringParam(searchQuery, cityName) {
 
 function getCityLatLong(searchQuery, cityName) {
   mapQuery += cityName;
-  console.log(typeof (mapQuery), mapQuery);
-  axios.post(mapQuery)
-    .then((res) => {
-      // handle success DJ KHALED
-      let data = '';
+  https.get(
+    mapQuery, (res) => {
+      let temp = '';
       let latitude;
       let long;
-      let temp;
 
-      res.on('data', (chunk => {
-        data += chunk;
-      }));
+      res.on('data', (d) => {
+        temp += d;
+      });
 
       res.on('end', () => {
-        completeData = JSON.parse(data);
-
-        console.log(completeData);
+        let completeData = JSON.parse(temp);
 
         latitude = completeData.results[0].locations[0].displayLatLng.lat;
-        long = copmleteData.results[0].locations[0].displayLatLng.lng;
+        long = completeData.results[0].locations[0].displayLatLng.lng;
 
-        temp = `&latitude=${latitude}&longitude=${long}`;
-        searchQuery += temp;
-      })
-        .catch((err) => {
-          if (err) throw err;
-        })
-        .then(() => {
-          console.log("Got the data");
-        });
-    })
-}
+        searchQuery += `&latitude=${latitude}&longitude=${long}`;
+        addRadiusParam(searchQuery);
+      });
 
-  //   axios('http://www.mapquestapi.com/geocoding/v1/address?key=JprhJCXYJMxRCpTODmFal0wPQh9T04hp&location=Seattle', {
-  //     method: 'post',
-  //     responseType: 'stream'
-  //   })
-  //     .then((res) => {
-  //       console.log(`before: ${searchQuery}`);
-  //       let data = '';
-  //       let latitude;
-  //       let long;
-  //       let temp;
-  //
-  //       res.on('data', (chunk => {
-  //         data += chunk;
-  //       }));
-  //
-  //       res.on('end', () => {
-  //         completeData = JSON.parse(data);
-  //
-  //         console.log(completeData);
-  //
-  //         latitude = completeData.results[0].locations[0].displayLatLng.lat;
-  //         long = copmleteData.results[0].locations[0].displayLatLng.lng;
-  //
-  //         temp = `&latitude=${latitude}&longitude=${long}`;
-  //         searchQuery += temp;
-  //         console.log(`after: ${searchQuery}`);
-  //
-  //       });
-  //     });
-  //   addRadiusParam(searchQuery);
-  // };
+
+    }).on('error', (e) => {
+      console.log('printing error');
+    console.error(e);
+  });
+};
 
 function addRadiusParam(searchQuery) {
   searchQuery += '&radius=16094';
@@ -112,45 +76,46 @@ function addOpenNowParam(searchQuery) {
   getRestaurantData(searchQuery);
 };
 
-async function getRestaurantData(searchQuery) {
-  axios({
-    method: 'get',
-    url: searchQuery,
-    responseType: 'stream',
-    headers: {
-      'Authorization': `Bearer ${yelpKey}`,
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': 'true'
-    }
-  })
-      .then(async (res) => {
+function getRestaurantData(searchQuery) {
+  const headers =
+    {
+      headers: {
+        'Authorization': `Bearer ${yelpKey}`,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true'
+      }
+    };
 
-        res.on('data', (chunk) => {
-          data += chunk;
-        });
+  https.get(searchQuery,{headers: headers}, (req, res) => {
+    let temp = '';
 
-        res.on('end', () => {
-          let completeData = JSON.parse(data);
+    console.log(req, res);
 
-          let restaurants = [];
-          for (let i = 0; i < 10; i++) {
-            let restaurant = {
-              name: completeData[index].name,
-              imgUrl: completeData[index].image_url
-            };
-            restaurants.push(restaurant);
-          }
-          console.log(restaurants);
-          return restaurants;
-        })
-      })
-      .catch((err) => {
-        if (err) throw err;
-      })
-      .then(() => {
-        console.log('Pushing restaurants into array');
-      })
-  };
+    res.on('data', (d) => {
+      temp += d;
+    });
+
+    res.on('end', () => {
+      let completeData = JSON.parse(temp);
+
+      console.log(`Printing complete data: ${completeData}`);
+      let restaurants = [];
+      for (let i = 0; i < 10; i++) {
+        let restaurant = {
+          name: completeData[index].name,
+          imgUrl: completeData[index].image_url
+        };
+        restaurants.push(restaurant);
+      }
+      console.log(restaurants);
+      return restaurants;
+    });
+
+
+  }).on('error', (e) => {
+    console.error(e);
+  });
+};
 
 module.exports.main = main;
 
