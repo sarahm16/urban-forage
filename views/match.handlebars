@@ -13,16 +13,11 @@
     </nav>
         <div class = "container">
         {{#each restaurant}}
-        <div class="container restaurants">
+        <div class="matches">
             <div id="restaurant-name">{{name}}</div>
             <img id="restaurant-image" src="{{image_url}}">
-            
-            <div class="buttons">
-                <button id="thumbs-up"><i class=" thumbs fas fa-thumbs-up"></i></button>
-                <button id="thumbs-down"><i class="thumbs fas fa-thumbs-down"></i></button>
-            </div>
         </div>
         {{/each}}
     </div>
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

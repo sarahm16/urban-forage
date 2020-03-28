@@ -8,9 +8,6 @@ let openAt = false;
 $("#see-matches").hide();
 
 //sample restaurant array
-
-//response[0][0].name
-//response[0][1]["image_url"]
 var response = [
       {
           "id": "xqH038QcquJEMm5LIZHd5w",
@@ -244,31 +241,31 @@ var index = 0;
 $("#restaurant-name").text(response[0].name);
 $("#restaurant-image").attr("src", response[0]["image_url"]);
 
-function nextRestaurant(response) {
+function nextRestaurant() {
   index += 1;
   if(index<response.length) {
     $("#restaurant-name").text(response[index].name);
     $("#restaurant-image").attr("src", response[index]["image_url"]);
   }
   else {
-    //function that takes you to matches
     $("#see-matches").show();
   }
 }
 
 //displaying next restaurant when user clicks thumbs up
 $("#thumbs-up").on("click", function() {
-  var newLike = {
-    user: "sarahmarie.carter@yahoo.com",
-    restaurantId: response[index].name,
-    imageURL: response[index].url,
-    latitude: 47.252876,
-    longitude: -122.444290
-  }
-  //console.log(newLike);
-  $.post("/api/likes/add", newLike);
+  $.get("/api/user_data").then(function(data) {
+    console.log(data.email);
+    var newLike = {
+      user: data.email,
+      restaurantId: response[index].name,
+      imageURL: response[index]["image_url"],
+      latitude: response[index].coordinates.latitude,
+      longitude: response[index].coordinates.longitude
+    }
+    $.post("/api/likes/add", newLike);
+  })
   nextRestaurant();
-  //function that puts restaurant in likes table
 });
 
 $("#thumbs-down").on("click", function() {
