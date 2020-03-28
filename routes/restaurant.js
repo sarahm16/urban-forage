@@ -211,7 +211,7 @@ async function getRestaurantData(searchQuery) {
       'Authorization': `Bearer ${yelpKey}`,
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true'
-    })
+    }
       .then(async (res) => {
 
         res.on('data', (chunk) => {
@@ -220,7 +220,6 @@ async function getRestaurantData(searchQuery) {
 
         res.on('end', () => {
           let completeData = JSON.parse(data);
-
 
           let restaurants = [];
           for (let i = 0; i < 10; i++) {
@@ -239,7 +238,7 @@ async function getRestaurantData(searchQuery) {
       .then(() => {
         console.log('Pushing restaurants into array');
       })
-  };
+  })
 };
 
 
