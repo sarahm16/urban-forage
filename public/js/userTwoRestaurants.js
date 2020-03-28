@@ -1,10 +1,11 @@
 
 $(document).ready(function(){
     
-    let userOne = localStorage.getItem('userOne')
+    var userOne = localStorage.getItem('userOne');
+
     var index = 0;
+
     $.get(`/api/showLikes/${userOne}`).then(function(data) {
-        const userOneLikes = data 
         localStorage.clear()
 
         //setting initial restaurant to the first restaurant in the array
@@ -13,7 +14,9 @@ $(document).ready(function(){
     });
 
     let data = JSON.parse(localStorage.getItem("data"));
+
     nextRestaurant();
+
     //displaying next restaurant when user clicks thumbs up
     $("#thumbs-up").on("click", function() {
         console.log("like");
@@ -34,6 +37,5 @@ $(document).ready(function(){
         else {
             //$("#see-matches").show();
         };
-        
     };
 });
