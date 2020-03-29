@@ -3,7 +3,7 @@ $(document).ready(function(){
     
     var userOne = localStorage.getItem('userOne');
 
-    var index = 0;
+    var index = -1;
 
     $.get(`/api/showLikes/${userOne}`).then(function(data) {
         
@@ -13,6 +13,8 @@ $(document).ready(function(){
     });
 
     let data = JSON.parse(localStorage.getItem("data"));
+    console.log("index:",index);
+    console.log("data",data);
 
     nextRestaurant();
 
@@ -35,9 +37,9 @@ $(document).ready(function(){
     function nextRestaurant() {
         
         if(index < data.length) {
+            index += 1;
             $("#restaurant-name").text(data[index].restaurantId);
             $("#restaurant-image").attr("src", data[index].imageURL);
-            
         }
         else {
             //$("#see-matches").show();

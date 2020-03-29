@@ -16,6 +16,14 @@ $(document).ready(function() {
 
   $("#submit-city").on('click', function() {
     let searchCity = $("#city-search").val();
-    $.post('api/restaurants/' + searchCity);
+    console.log(searchCity)
+    localStorage.setItem("searchCity",searchCity);
+  });
+
+  $('.input-group').keypress(function(event) {
+    if (event.keyCode == 13 || event.which == 13) {
+      let searchCity = $("#city-search").val();
+      window.location.replace('/api/restaurants')
+    }
   });
 });
