@@ -30,7 +30,6 @@ $(document).ready(function(){
     $("#thumbs-down").on("click", function() {
         nextRestaurant();
         //console.log("not-like");
-        index += 1;
     });
 
     function nextRestaurant() {
@@ -44,13 +43,12 @@ $(document).ready(function(){
             //$("#see-matches").show();
             
         };
+        index += 1;
     };
 
     let match = JSON.parse(localStorage.getItem('match'));
     console.log(match)
         $("#match-name").text(match.name);
         $("#match-image").attr("src", match.image);
-
-
 
 });

@@ -31,4 +31,9 @@ module.exports = function(app) {
     res.render("members");
     //res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+
+  app.get("/userTwoRestaurants", isAuthenticated, function(req, res) {
+    res.render("userTwoRestaurants");
+    //res.sendFile(path.join(__dirname, "../public/members.html"));
+  });
 };
