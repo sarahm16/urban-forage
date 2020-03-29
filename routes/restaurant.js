@@ -2,7 +2,7 @@ const yelp = require('yelp-fusion');
 const client = yelp.client('CfJsK0imSbCC04VXKuXZP2fd6UwnnmroGUxGl3xKIimg8ytZBYh3AdZDkPa0JygWzXv2NuutlXHXc8G7thannqJI-PPKEYOHynD_BR8_082Hyx6e_AIQtgvWmCN8XnYx');
 
 async function getRestaurantData(cityName) {
-  client.search({
+  let searchData = await client.search({
     term: 'restaurant',
     location: cityName,
     radius: 16094,
@@ -11,11 +11,16 @@ async function getRestaurantData(cityName) {
     offset: 0,
 
   }).then((res) => {
+    //console.log(res.jsonBody.businesses[0]);
     let restaurants = [];
     for (let i = 0; i < 10; i++) {
+      let b = res.jsonBody.businesses[i];
       let restaurant = {
-        name: res.jsonBody.businesses[i].name,
-        imgUrl: res.jsonBody.businesses[i].image_url
+        name: b.name,
+        imgUrl: b.image_url,
+        price: b.price,
+        latitude: b.coordinates.latitude,
+        longitude: b.coordinates.longitude
       };
       restaurants.push(restaurant);
     }
@@ -24,6 +29,7 @@ async function getRestaurantData(cityName) {
   .catch((err) => {
       if (err) throw err;
     });
+  return searchData;
   };
 
 module.exports.getRestaurantData = getRestaurantData;

@@ -9,6 +9,7 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
+    //console.log(req);
     res.json({
       email: req.user.email,
       id: req.user.id
@@ -39,7 +40,7 @@ module.exports = function(app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
-    console.log(req)
+    //console.log(req)
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -61,8 +62,9 @@ module.exports = function(app) {
      })
       .then(function(usersData) {
         //console.log(usersData);
+        //console.log("users:")
         var usersArray = [];
-        console.log(usersData)
+        //console.log(usersData)
         for(var i=0; i<usersData.length; i++) {
       
           var user = {
@@ -84,11 +86,10 @@ module.exports = function(app) {
 
   app.get("/api/restaurants", function(req, res) {
     res.render("restaurants");
-
   });
 
   app.post("/api/restaurants", (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
   });
 
@@ -98,12 +99,13 @@ module.exports = function(app) {
 
 
   app.get("/api/match", function(req, res) {
-    console.log("accessing matches")
+    //console.log("accessing matches")
     res.render("match");
   });
 
   // route for adding like to database
   app.post("/api/likes/add", function(req, res) {
+    console.log("add like body:");
     console.log(req.body);
     //console.log(`Attempting to add ${JSON.stringify(req.body)}`)
     db.Like.create({
@@ -124,13 +126,15 @@ module.exports = function(app) {
 
   // route for getting user likes
   app.get("/api/showLikes/:user", function(req, res) {
+    console.log("show like params:");
     console.log(req.params)
     db.Like.findAll({
       //attributes: ["restaurantId"],
       where: { user: req.params.user }
     })
       .then(function(data) {
-        console.log(data)
+        //console.log("find likes then:");
+        //console.log(data)
         res.json(data);
       })
       .catch(function(err) {
@@ -138,10 +142,13 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/restaurants/:searchQuery", async (req, res) => {
+  app.get("/api/restaurants/:searchQuery", async (req, res) => {
     let searchQuery = req.params.searchQuery;
     let temp = await rest.getRestaurantData(searchQuery);
-    console.log(temp);
+    //console.log("temp:");
+    //console.log(temp[temp.length-1]);
+    res.json(temp);
   })
+
 };
 
