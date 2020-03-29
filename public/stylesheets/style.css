@@ -86,7 +86,7 @@ form.login {
 
 .signup-label,
 .login-label {
-  color: rgb(76,72,75)
+  color: rgb(241,224,181);
 }
 
 .welcome{
@@ -117,7 +117,16 @@ form.login {
   margin-top: 20px;
 }
 
+.no-restaurants{
+  color: rgb(241,224,181);
+}
 
 #match-head{
   color: rgb(241,224,181);
+}
+
+.bgd-white{
+  background-color:rgba(61, 60, 60, 0.694);
+  border-radius: 5px;
+  box-shadow: rgba(61, 60, 60, 0.694);
 }

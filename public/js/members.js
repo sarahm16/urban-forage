@@ -23,6 +23,7 @@ $(document).ready(function() {
   $('.input-group').keypress(function(event) {
     if (event.keyCode == 13 || event.which == 13) {
       let searchCity = $("#city-search").val();
+      localStorage.setItem("searchCity",searchCity);
       window.location.replace('/api/restaurants')
     }
   });
