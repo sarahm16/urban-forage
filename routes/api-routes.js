@@ -9,10 +9,11 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
-      email: req.user.email,
-      id: req.user.id
-    });
+    console.log(req.user);
+    // res.json({
+    //   email: req.user.email,
+    //   id: req.user.id
+    // });
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
