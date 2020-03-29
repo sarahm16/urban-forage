@@ -29,17 +29,6 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
     res.render("members");
-  });
-
-  app.get("/restaurants", isAuthenticated, function(req, res) {
-    res.render("restaurants");
-  });
-
-  app.get("/match", isAuthenticated, function(req, res) {
-    res.render("match");
-  });
-
-  app.get("/userTwoRestaurants", isAuthenticated, function(req, res) {
-    res.render("userTwoRestaurants");
+    //res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 };
