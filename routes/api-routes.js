@@ -9,11 +9,11 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
-    console.log(req.user);
-    // res.json({
-    //   email: req.user.email,
-    //   id: req.user.id
-    // });
+    
+    res.json({
+      email: req.user.email,
+      id: req.user.id
+    });
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -83,24 +83,9 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/restaurants", function(req, res) {
-    res.render("restaurants");
-
-  });
-
   app.post("/api/restaurants", (req, res) => {
     console.log(req.body);
 
-  });
-
-  app.get("/api/userTwoRestaurants", function(req, res) {
-    res.render("userTwoRestaurants");
-  });
-
-
-  app.get("/api/match", function(req, res) {
-    console.log("accessing matches")
-    res.render("match");
   });
 
   // route for adding like to database
