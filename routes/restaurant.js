@@ -1,5 +1,7 @@
 const yelp = require('yelp-fusion');
-const client = yelp.client(process.env.API_KEY);
+const client = yelp.client(process.env.api_key);
+
+console.log(process.env.api_key)
 
 async function getRestaurantData(cityName) {
   let searchData = await client.search({

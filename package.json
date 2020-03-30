@@ -10,6 +10,10 @@
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
   },
+  "engines": {
+    "node": "12.13.x",
+    "npm": "6.12.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
