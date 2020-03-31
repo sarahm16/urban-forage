@@ -84,6 +84,11 @@ module.exports = function(app) {
       });
   });
 
+  app.delete("/api/users", function(req, res) {
+    db.Like.destroy({ where: {user: req.body.email} })
+    res.send("user deleted");
+  })
+
   app.get("/api/restaurants", function(req, res) {
     res.render("restaurants");
   });
