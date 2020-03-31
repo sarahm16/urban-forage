@@ -10,21 +10,36 @@ $(document).ready(function() {
 
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
+  var email;
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
+    email = data.email;
   });
 
-  $("#submit-city").on('click', function() {
-    let searchCity = $("#city-search").val();
-    console.log(searchCity)
-    localStorage.setItem("searchCity",searchCity);
+  $("#submit-city").on("click", function() {
+    submitted()
   });
 
-  $('.input-group').keypress(function(event) {
-    if (event.keyCode == 13 || event.which == 13) {
-      let searchCity = $("#city-search").val();
-      localStorage.setItem("searchCity",searchCity);
-      window.location.replace('/api/restaurants')
+  $(".input-group").keypress(function(event) {
+    if (event.keyCode === 13 || event.which === 13) {
+      var searchCity = $("#city-search").val();
+      localStorage.setItem("searchCity", searchCity);
+      window.location.replace("/api/restaurants");
     }
   });
+
+  function submitted(){
+    var searchCity = $("#city-search").val();
+    localStorage.setItem("searchCity", searchCity);
+    // remove user data from database
+    removeUser(email);
+  }
+
+  function removeUser(email) {
+    $.ajax({
+      url: "/api/users",
+      type: "DELETE",
+      data: { email: email }
+    }).then();
+  }
 });

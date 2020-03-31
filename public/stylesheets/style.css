@@ -30,7 +30,7 @@ form.login {
 .restaurants {
   background-color: rgb(211, 211, 211);
   border-radius: 10px;
-  width: 30%;
+  /*width: 30%;*/
   padding: 0px 0px 5px 0px;
   text-align: center;
   margin: 0 auto;
@@ -53,10 +53,12 @@ form.login {
 }
 
 #restaurant-image, #match-image {
-  width: 90%;
+  width: auto;
+  max-width: 90%;
   margin: 0 auto;
   margin-top: 5px;
   margin-bottom: 5px;
+  max-height: 500px;
 }
 
 /* .city-form {

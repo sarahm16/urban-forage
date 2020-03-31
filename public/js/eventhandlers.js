@@ -3,9 +3,9 @@ $("#no-restaurants").hide();
 var searchCity = localStorage.getItem("searchCity");
 
 function getRestaurants() {
-    return new Promise((resolve, reject) => {
+    return new Promise( function(resolve, reject) {
       $.ajax({
-        url: `restaurants/${searchCity}`,
+        url: "restaurants/"+searchCity,
         type: 'GET',
         data: {},
         success: function(data) {
@@ -20,7 +20,7 @@ function getRestaurants() {
 
 async function loadRestaurants() {
     response = await getRestaurants();
-    console.log(response); // 10
+    //console.log(response); // 10
     $("#restaurant-name").text(response[0].name);
     $("#restaurant-image").attr("src", response[0]['imgUrl']);
     $("#price").text(response[0].price);
@@ -55,7 +55,7 @@ $("#thumbs-up").on("click", function() {
       latitude: response[index].latitude,
       longitude: response[index].longitude
     };
-    console.log(newLike)
+    //console.log(newLike)
     $.post("/api/likes/add", newLike);
     nextRestaurant();
   });
