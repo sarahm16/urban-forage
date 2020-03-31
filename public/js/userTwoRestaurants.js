@@ -2,16 +2,17 @@ $(document).ready(function(){
     
     var userOne = localStorage.getItem('userOne');
     var index = -1;
-    $.get(`/api/showLikes/${userOne}`).then(function(data) {
+    let data;
+    $.get(`/api/showLikes/${userOne}`).then(function(fdata) {
         
         //setting initial restaurant to the first restaurant in the array
-        localStorage.setItem('data', JSON.stringify(data));
-        
+        localStorage.setItem('data', JSON.stringify(fdata));
+        data = JSON.parse(localStorage.getItem("data"));
+        console.log("index:",index);
+        console.log("data",data);
+        nextRestaurant();
     });
-    let data = JSON.parse(localStorage.getItem("data"));
-    console.log("index:",index);
-    console.log("data",data);
-    nextRestaurant();
+
     //displaying next restaurant when user clicks thumbs up
     $("#thumbs-up").on("click", function() {
         //console.log("like");
