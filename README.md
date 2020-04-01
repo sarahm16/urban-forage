@@ -42,3 +42,4 @@ Austin Database and Back End Development
  
 Josh API Development
 
+<img src="/public/images/signup.png">
