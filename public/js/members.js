@@ -17,13 +17,12 @@ $(document).ready(function() {
   });
 
   $("#submit-city").on("click", function() {
-    submitted()
+    submitted();
   });
 
   $(".input-group").keypress(function(event) {
     if (event.keyCode === 13 || event.which === 13) {
-      var searchCity = $("#city-search").val();
-      localStorage.setItem("searchCity", searchCity);
+      submitted();
       window.location.replace("/api/restaurants");
     }
   });
